@@ -284,7 +284,7 @@ export default function Home() {
             variants={teamCard}
             className="group cursor-pointer hover:-translate-y-[6px] transition-all duration-300 rounded-2xl hover:shadow-xl p-2 -m-2 bg-transparent hover:bg-white md:col-span-2"
           >
-            <div className="aspect-[4/5] rounded-2xl overflow-hidden mb-5 bg-gray-100 relative">
+            <div className="aspect-square rounded-2xl overflow-hidden mb-5 bg-gray-100 relative">
               <img
                 src={founderPhoto}
                 alt="Calyx Chisiza"
