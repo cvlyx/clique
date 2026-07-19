@@ -1,20 +1,15 @@
 import { Link } from "wouter";
 import { MoveRight, Twitter, Facebook, Linkedin, Instagram, Phone, Mail, Lightbulb, Star, Users, Shield, BookOpen, MapPin } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 // Images
-import heroBg from "@assets/generated_images/hero-woman.jpg";
 import founderPhoto from "@assets/calyx.jpg";
 import cliqueLogo from "@assets/clique_logo_transparent_1784458117046.png";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [contactSuccess, setContactSuccess] = useState(false);
-  const { scrollY } = useScroll();
-
-  // Parallax: image moves at 0.3x scroll speed
-  const heroY = useTransform(scrollY, [0, 1000], [0, 300]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80);
@@ -69,18 +64,7 @@ export default function Home() {
     >
       {/* ─── HERO ─────────────────────────────────────────────────────── */}
       <section className="relative w-full bg-[#111111] pt-6 pb-40 overflow-hidden">
-        <div className="absolute inset-0 z-0 flex justify-end">
-          <motion.div style={{ y: heroY }} className="relative w-full md:w-[55%] h-full origin-top">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#111111] via-[#111111]/80 to-transparent z-10" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-transparent z-10" />
-            <img src={heroBg} alt="Clique Technologies professional" className="w-full h-full object-cover" />
-            <motion.div
-              className="absolute inset-0 z-20 bg-gradient-to-tr from-primary/30 to-transparent"
-              animate={{ opacity: [0.4, 0.6, 0.4] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </motion.div>
-        </div>
+        <div className="absolute inset-0 z-0 bg-[#111111]" />
 
         {/* ─── NAV ─── */}
         <motion.nav
