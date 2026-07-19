@@ -64,7 +64,18 @@ export default function Home() {
     >
       {/* ─── HERO ─────────────────────────────────────────────────────── */}
       <section className="relative w-full bg-[#111111] pt-6 pb-40 overflow-hidden">
-        <div className="absolute inset-0 z-0 bg-[#111111]" />
+        <div className="absolute inset-0 z-0 flex justify-end">
+          <div className="relative w-full md:w-[55%] h-full">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#111111] via-[#111111]/80 to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-transparent z-10" />
+            <img
+              src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80"
+              alt="Technology"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 z-20 bg-gradient-to-tr from-primary/20 to-transparent" />
+          </div>
+        </div>
 
         {/* ─── NAV ─── */}
         <motion.nav
