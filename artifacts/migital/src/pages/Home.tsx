@@ -282,7 +282,7 @@ export default function Home() {
         >
           <motion.div
             variants={teamCard}
-            className="group cursor-pointer hover:-translate-y-[6px] transition-all duration-300 rounded-2xl hover:shadow-xl p-2 -m-2 bg-transparent hover:bg-white md:col-span-2"
+            className="group cursor-pointer hover:-translate-y-[6px] transition-all duration-300 rounded-2xl hover:shadow-xl p-2 -m-2 bg-transparent hover:bg-white"
           >
             <div className="aspect-square rounded-2xl overflow-hidden mb-5 bg-gray-100 relative">
               <img
