@@ -259,7 +259,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* ─── OUR FOUNDER ───────────────────────────────────────────── */}
+      {/* ─── OUR TEAM ───────────────────────────────────────────── */}
       <section className="container mx-auto px-6 max-w-7xl py-10 mb-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -278,43 +278,38 @@ export default function Home() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6"
         >
-          {/* Photo */}
-          <motion.div variants={teamCard} className="relative rounded-3xl overflow-hidden aspect-[4/5] bg-gray-100 group">
-            <img
-              src={founderPhoto}
-              alt="Calyx Chisiza - Founder of Clique Technologies"
-              className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-8">
-              <span className="bg-primary text-[#111111] text-xs font-bold px-3 py-1.5 rounded-full">Founder</span>
+          <motion.div
+            variants={teamCard}
+            className="group cursor-pointer hover:-translate-y-[6px] transition-all duration-300 rounded-2xl hover:shadow-xl p-2 -m-2 bg-transparent hover:bg-white md:col-span-2"
+          >
+            <div className="aspect-[4/5] rounded-2xl overflow-hidden mb-5 bg-gray-100 relative">
+              <img
+                src={founderPhoto}
+                alt="Calyx Chisiza"
+                className="w-full h-full object-cover group-hover:scale-[1.08] transition-transform duration-700 ease-out"
+              />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500" />
             </div>
-          </motion.div>
-
-          {/* Bio */}
-          <motion.div variants={teamCard} className="flex flex-col justify-center">
-            <span className="bg-primary/15 text-[#111111] text-xs font-bold px-3 py-1 rounded-full mb-6 inline-block w-fit">
-              Leadership
-            </span>
-            <h3 className="text-3xl md:text-4xl font-bold text-[#111111] mb-2 tracking-tight">
+            <h3 className="font-bold text-[#111111] group-hover:text-primary transition-colors duration-300 mb-2 leading-tight text-[15px]">
               Calyx Chisiza
             </h3>
-            <p className="text-primary font-semibold text-lg mb-6">Founder</p>
-            <p className="text-gray-500 leading-relaxed mb-6">
-              Founded Clique Technologies with a vision of becoming a leading technology company that creates impactful solutions through software engineering, artificial intelligence, data science, and digital transformation.
-            </p>
-            <p className="text-gray-500 leading-relaxed mb-8">
-              Calyx leads the company's strategy and technical direction, overseeing the design, development, and implementation of scalable technology solutions that solve real-world problems for organizations worldwide.
-            </p>
-            <div className="flex items-center gap-4">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-[#111111] transition-all hover:scale-110 active:scale-95">
-                <Linkedin className="w-4 h-4" />
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-[#111111] transition-all hover:scale-110 active:scale-95">
-                <Twitter className="w-4 h-4" />
-              </a>
+            <p className="text-[13px] text-gray-500 mb-4 leading-relaxed">Founder & CEO</p>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 bg-gray-200 group-hover:rotate-180 transition-transform duration-300 ease-out">
+                <img src={founderPhoto} alt="Avatar" className="w-full h-full object-cover" />
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {["Leadership", "Strategy"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-[10px] font-bold bg-gray-100 text-gray-600 px-2 py-1 rounded-md tracking-wide uppercase group-hover:bg-primary/15 group-hover:text-[#111111] transition-colors duration-300"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
           </motion.div>
         </motion.div>
