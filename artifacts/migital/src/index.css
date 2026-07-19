@@ -115,14 +115,14 @@ html {
   --popover: 0 0% 100%;
   --popover-foreground: 0 0% 6.7%;
   --popover-border: 0 0% 89.8%;
-  --primary: 82 26% 52%;
-  --primary-foreground: 0 0% 100%;
+  --primary: 44 95% 48%;
+  --primary-foreground: 0 0% 8%;
   --secondary: 0 0% 96.1%;
   --secondary-foreground: 0 0% 9%;
   --muted: 0 0% 96.1%;
   --muted-foreground: 215 14% 46%;
-  --accent: 82 26% 52%;
-  --accent-foreground: 0 0% 100%;
+  --accent: 44 95% 48%;
+  --accent-foreground: 0 0% 8%;
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
   --input: 0 0% 89.8%;
