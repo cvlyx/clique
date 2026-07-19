@@ -95,7 +95,7 @@ export default function Home() {
               <img
                 src={cliqueLogo}
                 alt="Clique Technologies"
-                className="h-12 w-auto"
+                className="h-16 w-auto"
                 style={{ mixBlendMode: "screen" }}
               />
             </motion.div>
