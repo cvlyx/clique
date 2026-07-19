@@ -269,7 +269,7 @@ export default function Home() {
           className="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-gray-100 pb-6"
         >
           <div className="flex items-center gap-4">
-            <h2 className="text-3xl font-bold text-[#111111] tracking-tight">Our Founder</h2>
+            <h2 className="text-3xl font-bold text-[#111111] tracking-tight">Our Team</h2>
           </div>
         </motion.div>
 
