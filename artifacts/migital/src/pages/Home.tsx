@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { MoveRight, Twitter, Facebook, Linkedin, Instagram, Phone, Mail } from "lucide-react";
+import { MoveRight, Twitter, Facebook, Linkedin, Instagram, Phone, Mail, Lightbulb, Star, Users, Shield, BookOpen, MapPin } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -14,6 +14,7 @@ import cliqueLogo from "@assets/clique_logo_transparent_1784458117046.png";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
+  const [contactSuccess, setContactSuccess] = useState(false);
   const { scrollY } = useScroll();
 
   // Parallax: image moves at 0.3x scroll speed
@@ -32,7 +33,7 @@ export default function Home() {
   };
   const navItem = {
     hidden: { opacity: 0, y: -20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+    show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as const } },
   };
   const heroHeading = {
     hidden: { opacity: 0 },
@@ -40,19 +41,19 @@ export default function Home() {
   };
   const heroWord = {
     hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
   };
   const servicesContainer = {
     hidden: { opacity: 0, y: 60 },
     show: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut", staggerChildren: 0.1, delayChildren: 0.2 },
+      transition: { duration: 0.6, ease: "easeOut" as const, staggerChildren: 0.1, delayChildren: 0.2 },
     },
   };
   const serviceCol = {
     hidden: { opacity: 0, y: 40 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
   };
   const teamContainer = {
     hidden: { opacity: 0 },
@@ -60,7 +61,7 @@ export default function Home() {
   };
   const teamCard = {
     hidden: { opacity: 0, y: 50 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
   };
 
   return (
@@ -107,17 +108,23 @@ export default function Home() {
               <img
                 src={cliqueLogo}
                 alt="Clique Technologies"
-                className="h-10 w-auto"
+                className="h-12 w-auto"
                 style={{ mixBlendMode: "screen" }}
               />
             </motion.div>
 
             {/* Nav links */}
             <div className="hidden md:flex items-center gap-8 text-sm font-medium">
-              {["Services", "Solutions", "About Us", "Our Team", "Careers"].map((item) => (
-                <motion.div key={item} variants={navItem} whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
-                  <Link href="/" className="hover:text-primary transition-colors active:scale-95 inline-block">
-                    {item}
+              {[
+                { label: "Services", href: "/services" },
+                { label: "Solutions", href: "/solutions" },
+                { label: "About Us", href: "/#values" },
+                { label: "Our Team", href: "/" },
+                { label: "Careers", href: "/careers" }
+              ].map((item) => (
+                <motion.div key={item.label} variants={navItem} whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+                  <Link href={item.href} className="hover:text-primary transition-colors active:scale-95 inline-block">
+                    {item.label}
                   </Link>
                 </motion.div>
               ))}
@@ -126,17 +133,19 @@ export default function Home() {
             {/* Right actions */}
             <div className="flex items-center gap-6 text-sm font-medium">
               <motion.div variants={navItem} whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }} className="hidden sm:block">
-                <Link href="/" className="hover:text-primary transition-colors active:scale-95 inline-block">
+                <Link href="/#contact" className="hover:text-primary transition-colors active:scale-95 inline-block">
                   Contact
                 </Link>
               </motion.div>
-              <motion.button
-                variants={navItem}
-                className="relative overflow-hidden bg-primary text-[#111111] px-6 py-2.5 rounded-full font-semibold active:scale-95 group hover:opacity-90 transition-opacity"
-              >
-                <span className="relative z-10">Get Started</span>
-                <div className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-150%] skew-x-[-20deg] group-hover:animate-shimmer" />
-              </motion.button>
+              <motion.div variants={navItem}>
+                <Link
+                  href="/services"
+                  className="relative overflow-hidden bg-primary text-[#111111] px-6 py-2.5 rounded-full font-semibold active:scale-95 group hover:opacity-90 transition-opacity inline-block"
+                >
+                  <span className="relative z-10">Get Started</span>
+                  <div className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-150%] skew-x-[-20deg] group-hover:animate-shimmer" />
+                </Link>
+              </motion.div>
             </div>
           </div>
         </motion.nav>
@@ -355,6 +364,203 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* ─── OUR VALUES ─────────────────────────────────────────────── */}
+      <section id="values" className="container mx-auto px-6 max-w-7xl py-24">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <span className="bg-primary/15 text-[#111111] text-xs font-bold px-3 py-1 rounded-full mb-4 inline-block">
+            What Drives Us
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#111111] tracking-tight mb-4">
+            Our Values
+          </h2>
+          <p className="text-gray-500 max-w-2xl mx-auto">
+            At Clique, innovation, collaboration, and quality are the foundation of everything we build.
+          </p>
+        </motion.div>
+
+        <motion.div
+          variants={teamContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {[
+            {
+              title: "Innovation",
+              desc: "We continuously explore new ideas and technologies to create better solutions.",
+              icon: Lightbulb
+            },
+            {
+              title: "Excellence",
+              desc: "We are committed to delivering high-quality products and services.",
+              icon: Star
+            },
+            {
+              title: "Collaboration",
+              desc: "We believe great technology is built through teamwork.",
+              icon: Users
+            },
+            {
+              title: "Integrity",
+              desc: "We operate with transparency, responsibility, and trust.",
+              icon: Shield
+            },
+            {
+              title: "Continuous Learning",
+              desc: "We embrace growth and adapt to the rapidly changing technology landscape.",
+              icon: BookOpen
+            }
+          ].map((val, i) => (
+            <motion.div
+              key={i}
+              variants={teamCard}
+              className="bg-white border border-gray-100 rounded-2xl p-8 hover:-translate-y-2 hover:shadow-xl transition-all duration-300"
+            >
+              <div className="w-12 h-12 bg-primary/15 rounded-full flex items-center justify-center mb-6">
+                <val.icon className="w-6 h-6 text-[#111111]" />
+              </div>
+              <h3 className="font-bold text-[#111111] text-lg mb-3">{val.title}</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">{val.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </section>
+
+      {/* ─── CONTACT US ─────────────────────────────────────────────── */}
+      <section id="contact" className="bg-[#111111] py-24">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            {/* Left Col */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-5"
+            >
+              <span className="bg-primary/15 text-primary text-xs font-bold px-3 py-1 rounded-full mb-6 inline-block">
+                Get In Touch
+              </span>
+              <h2 className="text-4xl font-bold text-white mb-6 leading-tight">
+                Ready to Build Something Great?
+              </h2>
+              <p className="text-gray-400 mb-10 leading-relaxed text-lg">
+                Tell us about your project. Our team will get back to you within 24 hours.
+              </p>
+              
+              <div className="space-y-6">
+                <div className="flex items-center gap-4 text-gray-300">
+                  <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center shrink-0">
+                    <Mail className="w-5 h-5 text-primary" />
+                  </div>
+                  <span className="font-medium">hello@clique.tech</span>
+                </div>
+                <div className="flex items-center gap-4 text-gray-300">
+                  <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center shrink-0">
+                    <Phone className="w-5 h-5 text-primary" />
+                  </div>
+                  <span className="font-medium">+1 (555) 000-0000</span>
+                </div>
+                <div className="flex items-center gap-4 text-gray-300">
+                  <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center shrink-0">
+                    <MapPin className="w-5 h-5 text-primary" />
+                  </div>
+                  <span className="font-medium">Available Worldwide · Remote-First</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Col / Form */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="lg:col-span-7"
+            >
+              <div className="bg-white rounded-[24px] p-8 md:p-12 shadow-2xl">
+                {contactSuccess ? (
+                  <div className="text-center py-16">
+                    <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                      <MoveRight className="w-8 h-8 text-green-600" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-[#111111] mb-4">Thank you!</h3>
+                    <p className="text-gray-500">We'll be in touch with you shortly.</p>
+                  </div>
+                ) : (
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      setContactSuccess(true);
+                    }}
+                    className="space-y-6"
+                  >
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label className="text-sm font-semibold text-[#111111]">Full Name</label>
+                        <input
+                          type="text"
+                          required
+                          className="w-full rounded-xl border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/30 text-[#111111] bg-gray-50"
+                          placeholder="John Doe"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-semibold text-[#111111]">Email Address</label>
+                        <input
+                          type="email"
+                          required
+                          className="w-full rounded-xl border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/30 text-[#111111] bg-gray-50"
+                          placeholder="john@example.com"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-semibold text-[#111111]">Service Needed</label>
+                      <select
+                        required
+                        className="w-full rounded-xl border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/30 text-[#111111] bg-gray-50 appearance-none"
+                      >
+                        <option value="">Select a service</option>
+                        <option value="software">Software Development</option>
+                        <option value="ai">AI & Data Science</option>
+                        <option value="web">Web & Digital</option>
+                        <option value="cloud">Cloud & DevOps</option>
+                        <option value="cybersecurity">Cybersecurity</option>
+                        <option value="networking">Networking & IT</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-semibold text-[#111111]">Message</label>
+                      <textarea
+                        required
+                        rows={4}
+                        className="w-full rounded-xl border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/30 text-[#111111] bg-gray-50 resize-none"
+                        placeholder="Tell us about your project..."
+                      ></textarea>
+                    </div>
+                    <button
+                      type="submit"
+                      className="w-full bg-primary text-[#111111] px-6 py-4 rounded-full font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-2 active:scale-95"
+                    >
+                      Send Message <MoveRight className="w-5 h-5" />
+                    </button>
+                  </form>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* ─── FOOTER ──────────────────────────────────────────────────── */}
       <footer className="bg-[#111111] text-white pt-24 pb-8">
         <div className="container mx-auto px-6 max-w-7xl">
@@ -380,22 +586,22 @@ export default function Home() {
               <h4 className="font-bold mb-6 tracking-wide">Services</h4>
               <ul className="space-y-4 text-sm text-gray-400 font-medium">
                 <li>
-                  <Link href="/" className="hover:text-primary transition-colors inline-block active:scale-95">
+                  <Link href="/services" className="hover:text-primary transition-colors inline-block active:scale-95">
                     Software Development
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" className="hover:text-primary transition-colors inline-block active:scale-95">
+                  <Link href="/services" className="hover:text-primary transition-colors inline-block active:scale-95">
                     AI & Data Science
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" className="hover:text-primary transition-colors inline-block active:scale-95">
+                  <Link href="/services" className="hover:text-primary transition-colors inline-block active:scale-95">
                     Cloud & DevOps
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" className="hover:text-primary transition-colors inline-block active:scale-95">
+                  <Link href="/services" className="hover:text-primary transition-colors inline-block active:scale-95">
                     Cybersecurity
                   </Link>
                 </li>
@@ -407,7 +613,7 @@ export default function Home() {
               <h4 className="font-bold mb-6 tracking-wide">Company</h4>
               <ul className="space-y-4 text-sm text-gray-400 font-medium">
                 <li>
-                  <Link href="/" className="hover:text-primary transition-colors inline-block active:scale-95">
+                  <Link href="/#values" className="hover:text-primary transition-colors inline-block active:scale-95">
                     About Us
                   </Link>
                 </li>
@@ -417,12 +623,12 @@ export default function Home() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" className="hover:text-primary transition-colors inline-block active:scale-95">
+                  <Link href="/careers" className="hover:text-primary transition-colors inline-block active:scale-95">
                     Careers
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" className="hover:text-primary transition-colors inline-block active:scale-95">
+                  <Link href="/#contact" className="hover:text-primary transition-colors inline-block active:scale-95">
                     Contact Us
                   </Link>
                 </li>
